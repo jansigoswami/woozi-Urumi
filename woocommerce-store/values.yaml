@@ -1,0 +1,54 @@
+# Base Configuration
+# Override with values-local.yaml or values-prod.yaml
+
+storeName: my-store
+namespace: my-first-store
+
+# MySQL base configuration
+mysql:
+  image: mysql:8.0
+  rootPassword: defaultpass123
+  database: wordpress
+  user: wpuser
+  password: defaultpass123
+  storage: 5Gi
+  storageClass: ""
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "100m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+
+# WordPress base configuration
+wordpress:
+  image: wordpress:latest
+  storage: 5Gi
+  storageClass: ""
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "100m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+
+# Service base configuration
+service:
+  type: LoadBalancer
+  port: 80
+
+# Ingress base configuration (disabled by default)
+ingress:
+  enabled: false
+  className: ""
+  host: "store.local"
+  tls:
+    enabled: false
+    secretName: ""
+resourceQuota:
+  enabled: false
+  cpu: "2"
+  memory: "4Gi"
+  pvcCount: "5"

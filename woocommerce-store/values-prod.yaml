@@ -1,0 +1,53 @@
+# Production Configuration (VPS/k3s)
+storeName: my-store
+namespace: my-first-store
+
+# MySQL configuration for production
+mysql:
+  image: mysql:8.0
+  rootPassword: CHANGE_ME_PROD_ROOT_PASSWORD  # CHANGE THIS!
+  database: wordpress
+  user: wpuser
+  password: CHANGE_ME_PROD_WP_PASSWORD  # CHANGE THIS!
+  storage: 10Gi  # Larger storage for production
+  storageClass: "local-path"  # k3s default storage class
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "250m"
+    limits:
+      memory: "1Gi"
+      cpu: "1000m"
+
+# WordPress configuration for production
+wordpress:
+  image: wordpress:latest
+  storage: 10Gi  # Larger storage for production
+  storageClass: "local-path"  # k3s default storage class
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "250m"
+    limits:
+      memory: "1Gi"
+      cpu: "1000m"
+
+# Service configuration for production
+service:
+  type: ClusterIP  # Use Ingress instead of LoadBalancer on VPS
+  port: 80
+
+# Ingress configuration for production
+ingress:
+  enabled: true  # Enable Ingress for production
+  className: "traefik"  # k3s comes with Traefik by default
+  host: "store.yourdomain.com"  # CHANGE THIS to your actual domain
+  tls:
+    enabled: true  # Enable HTTPS
+    secretName: "store-tls"  # cert-manager will create this
+
+# Production-specific settings
+production:
+  enabled: true
+  autoBackup: true
+  monitoring: true

@@ -1,0 +1,3 @@
+appName: my-app
+replicaCount: 1
+image: nginx:latest

@@ -1,0 +1,12 @@
+{{- if .Values.resourceQuota.enabled }}
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: store-quota
+  namespace: {{ .Values.namespace }}
+spec:
+  hard:
+    requests.cpu: {{ .Values.resourceQuota.cpu }}
+    requests.memory: {{ .Values.resourceQuota.memory }}
+    persistentvolumeclaims: {{ .Values.resourceQuota.pvcCount }}
+{{- end }}

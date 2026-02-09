@@ -1,0 +1,11 @@
+replicaCount: 2
+
+service:
+  type: NodePort
+  nodePorts:
+    http: 30081
+
+resources:
+  limits:
+    memory: 128Mi
+    cpu: 100m

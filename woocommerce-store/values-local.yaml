@@ -1,0 +1,51 @@
+# Local Development Configuration
+storeName: my-store
+namespace: my-first-store
+
+# MySQL configuration for local
+mysql:
+  image: mysql:8.0
+  rootPassword: rootpass123
+  database: wordpress
+  user: wpuser
+  password: wppass123
+  storage: 5Gi
+  storageClass: ""  # Use default local storage
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "100m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+
+# WordPress configuration for local
+wordpress:
+  image: wordpress:latest
+  storage: 5Gi
+  storageClass: ""  # Use default local storage
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "100m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+
+# Service configuration for local
+service:
+  type: LoadBalancer  # Docker Desktop supports LoadBalancer
+  port: 80
+
+# Ingress configuration for local
+ingress:
+  enabled: false  # Use port-forward or LoadBalancer for local
+  className: ""
+  host: "store.local"
+  tls:
+    enabled: false
+
+# Local-specific settings
+localDevelopment:
+  enabled: true
+  portForward: true  # Reminder to use kubectl port-forward
