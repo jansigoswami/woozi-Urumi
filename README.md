@@ -62,8 +62,8 @@ User → React Dashboard → Node.js API → Kubernetes
 
 ### 1. Clone & Setup
 ```bash
-git clone https://github.com/yourusername/urumi.git
-cd urumi
+git clone https://github.com/jansigoswami/woozi-Urumi.git
+cd woozi-Urumi
 ```
 
 ### 2. Start Backend
