@@ -1,4 +1,6 @@
+import React from 'react';
 import { useState } from 'react';
+
 
 const StoreList = ({ stores, onDelete, onRefresh }) => {
   const [deletingId, setDeletingId] = useState(null);

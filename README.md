@@ -77,7 +77,7 @@ Backend runs at `http://localhost:3001`
 
 ### 3. Start Dashboard
 ```bash
-cd dashboard
+cd src
 npm install
 npm run dev
 ```
@@ -86,7 +86,7 @@ Dashboard runs at `http://localhost:5173`
 
 ### 4. Create Your First Store
 
-**Via Dashboard:**
+**Via UI:**
 1. Open `http://localhost:5173`
 2. Click "Create New Store"
 3. Enter store name
@@ -235,11 +235,10 @@ Urumi/
 │   ├── server.js         # Express app
 │   ├── database.js       # SQLite store
 │   └── k8s-helper.js     # Kubernetes client
-├── dashboard/            # React UI
-│   ├── src/
-│   │   ├── App.jsx
-│   │   ├── components/
-│   │   └── services/
+├── src/            # React UI
+│   ├── App.jsx/
+│   │── components/
+│   │── services/
 ├── woocommerce-store/    # Helm chart
 │   ├── Chart.yaml
 │   ├── values.yaml       # Base config
